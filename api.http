@@ -1,0 +1,31 @@
+GET http://localhost:3000/user
+
+###
+# @name createUser
+POST http://localhost:3000/user
+Content-Type: application/json
+
+{
+    "name": "Zlatan",
+    "email": "zlatan@example.com",
+    "password": "password123"
+}
+
+###
+DELETE  http://localhost:3000/user/7a13c157-3c02-490c-9fd4-6aa377783984
+
+
+###
+# @name signIn
+POST http://localhost:3000/user/session
+Content-Type: application/json
+
+{
+    "email": "zlatan@example.com",
+    "password": "password123"
+}
+
+###
+GET http://localhost:3000/user/290a3d79-eac5-4f17-8d9a-55e481e45c99
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InpsYXRhbkBleGFtcGxlLmNvbSIsInN1YiI6IjI5MGEzZDc5LWVhYzUtNGYxNy04ZDlhLTU1ZTQ4MWU0NWM5OSIsImlhdCI6MTczMzMzMjc1OSwiZXhwIjoxNzMzMzM2MzU5fQ.wuSo-Ji5R6VtvjbXpQYztSWfxhpHgXGvvHgUJFavcjQ
+
