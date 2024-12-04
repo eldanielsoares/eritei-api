@@ -12,8 +12,8 @@ Content-Type: application/json
 }
 
 ###
-DELETE  http://localhost:3000/user/7a13c157-3c02-490c-9fd4-6aa377783984
-
+DELETE  http://localhost:3000/user
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InpsYXRhbkBleGFtcGxlLmNvbSIsInN1YiI6IjI5MGEzZDc5LWVhYzUtNGYxNy04ZDlhLTU1ZTQ4MWU0NWM5OSIsImlhdCI6MTczMzMzMzc3OSwiZXhwIjoxNzMzNDIwMTc5fQ.s1_c151ZWCNmZnaZFKJO0u6myBG5fEg0aZuDiLp7ivQ
 
 ###
 # @name signIn
