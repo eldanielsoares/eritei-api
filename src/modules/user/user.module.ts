@@ -16,8 +16,8 @@ import { JwtStrategy } from './jwt/jwt-strategy';
   imports: [
     PrismaClient,
     JwtModule.register({
-      secret: 'seu-segredo-aqui', // Este segredo deve ser colocado em uma variável de ambiente
-      signOptions: { expiresIn: '60m' }, // Tempo de expiração do token
+      secret: process.env.JWT_KEY,
+      signOptions: { expiresIn: '1d' },
     }),
   ],
   controllers: [UserController],
