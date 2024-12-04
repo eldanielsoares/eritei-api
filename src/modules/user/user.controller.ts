@@ -49,9 +49,11 @@ export class UserController {
     return this.findUserByEmailUsecase.execute(data);
   }
 
-  @Delete(':id')
-  async delete(@Param() param: { id: string }) {
-    await this.deleteUserUsecase.execute(param.id);
+  @UseGuards(JwtAuthGuard)
+  @Delete()
+  async deleteProfile(@Req() request) {
+    const userId = request.user.id;
+    await this.deleteUserUsecase.execute(userId);
     return 'User deleted successfully';
   }
 }
