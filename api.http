@@ -1,3 +1,5 @@
+
+
 GET http://localhost:3000/user
 
 ###
@@ -6,8 +8,8 @@ POST http://localhost:3000/user
 Content-Type: application/json
 
 {
-    "name": "Zlatan",
-    "email": "zlatan@example.com",
+    "name": "Daniel",
+    "email": "daniel@example.com",
     "password": "password123"
 }
 
@@ -21,7 +23,7 @@ POST http://localhost:3000/user/session
 Content-Type: application/json
 
 {
-    "email": "zlatan@example.com",
+    "email": "daniel@example.com",
     "password": "password123"
 }
 
@@ -29,3 +31,17 @@ Content-Type: application/json
 GET http://localhost:3000/user/profile
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InpsYXRhbkBleGFtcGxlLmNvbSIsInN1YiI6ImVkZWJlMjBmLTQ0YWQtNGZiMi04NWI4LTBkYTg2Y2UzZTcwMyIsImlhdCI6MTczMzMzNDA1NiwiZXhwIjoxNzMzNDIwNDU2fQ.0TdGBnQ2QVMYxiOI5T0LXdDMm27zR4y3u3iB_EwfWMc
 
+###
+POST http://localhost:3000/user-card/get-initial
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImRhbmllbEBleGFtcGxlLmNvbSIsInN1YiI6ImVlNjYxN2EwLTk1MDMtNGJmMi1iODQzLWMyMjhhNzA2NjA3MSIsImlhdCI6MTczMzM0NTMyMywiZXhwIjoxNzMzNDMxNzIzfQ.8Tqi1hlEBxZhzDVIi8yOGbasAibk_3tpZk54fZLwqEE
+
+{
+  "cheap": "fallen"
+}
+
+
+###
+GET http://localhost:3000/user-card
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImRhbmllbEBleGFtcGxlLmNvbSIsInN1YiI6ImVlNjYxN2EwLTk1MDMtNGJmMi1iODQzLWMyMjhhNzA2NjA3MSIsImlhdCI6MTczMzM0NTMyMywiZXhwIjoxNzMzNDMxNzIzfQ.8Tqi1hlEBxZhzDVIi8yOGbasAibk_3tpZk54fZLwqEE
