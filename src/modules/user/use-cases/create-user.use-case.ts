@@ -25,6 +25,10 @@ export class CreateUserUsecase {
       password: hashedPassword,
     };
 
-    return this.userRepository.create(userData);
+    const saveUser = await this.userRepository.create(userData);
+
+    delete saveUser.password;
+
+    return saveUser;
   }
 }
