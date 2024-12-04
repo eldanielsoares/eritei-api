@@ -26,6 +26,6 @@ Content-Type: application/json
 }
 
 ###
-GET http://localhost:3000/user/290a3d79-eac5-4f17-8d9a-55e481e45c99
+GET http://localhost:3000/user/profile
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InpsYXRhbkBleGFtcGxlLmNvbSIsInN1YiI6IjI5MGEzZDc5LWVhYzUtNGYxNy04ZDlhLTU1ZTQ4MWU0NWM5OSIsImlhdCI6MTczMzMzMjc1OSwiZXhwIjoxNzMzMzM2MzU5fQ.wuSo-Ji5R6VtvjbXpQYztSWfxhpHgXGvvHgUJFavcjQ
 
