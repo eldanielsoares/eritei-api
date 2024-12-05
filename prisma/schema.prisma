@@ -33,6 +33,7 @@ model Card {
   description String
   image       String
   weight      Int
+  shots       Int
   isFree      Boolean
   level       Int        @default(1)
   deckId      String?
