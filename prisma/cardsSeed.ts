@@ -19,8 +19,8 @@ export const categories = [
 ];
 
 const deck = [
-  { id: '4d9d4829-d806-4c32-9a63-f23cdc5823a8' },
-  { id: 'f97d5da2-f9c5-451d-ae3f-e23134bbbc38' },
+  { id: '8ab5a5f3-99cd-4211-b3be-73e3666e3abe' },
+  { id: 'f2d95b87-3320-47ea-9821-d37feaa8dfb6' },
 ];
 
 async function main() {
@@ -31,7 +31,6 @@ async function main() {
       cards.push({
         categoryId: category.id,
         description: faker.lorem.sentence(),
-        shots: faker.number.int({ min: 1, max: 10 }),
         image: faker.image.url(),
         weight: faker.number.int({ min: 1, max: 10 }),
         deckId: deck[faker.number.int({ min: 0, max: 1 })].id,
