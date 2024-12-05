@@ -20,6 +20,7 @@ model User {
   password  String
   createdAt DateTime   @default(now())
   updatedAt DateTime   @updatedAt
+  level     Int        @default(1)
   UserCard  UserCard[]
 
   @@map("users")
@@ -29,15 +30,16 @@ model Card {
   id          String     @id @default(uuid())
   categoryId  String
   description String
-  shots       Int
   image       String
   weight      Int
-  cheap       String
   isFree      Boolean
+  level       Int        @default(1)
+  deckId      String?
   createdAt   DateTime   @default(now())
   updatedAt   DateTime   @updatedAt
   UserCard    UserCard[]
-  Category    Category   @relation(fields: [categoryId], references: [id])
+  Category    Category   @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  Deck        Deck?      @relation(fields: [deckId], references: [id], onDelete: Cascade)
 
   @@map("cards")
 }
@@ -46,10 +48,12 @@ model UserCard {
   id        String   @id @default(uuid())
   userId    String
   cardId    String
+  deckId    String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  user      User     @relation(fields: [userId], references: [id])
-  card      Card     @relation(fields: [cardId], references: [id])
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  card      Card     @relation(fields: [cardId], references: [id], onDelete: Cascade)
+  deck      Deck?    @relation(fields: [deckId], references: [id], onDelete: Cascade)
 
   @@unique([userId, cardId])
   @@map("userCards")
@@ -63,4 +67,15 @@ model Category {
   Card      Card[]
 
   @@map("categories")
+}
+
+model Deck {
+  id        String     @id @default(uuid())
+  name      String
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  Card      Card[]
+  UserCard  UserCard[]
+
+  @@map("decks")
 }

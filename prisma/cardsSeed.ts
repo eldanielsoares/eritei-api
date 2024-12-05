@@ -18,11 +18,12 @@ export const categories = [
   { name: 'opinion', id: 'f5aeb9f4-1ea9-45d2-b28b-f9d5edbd2b82' },
 ];
 
-const cheap = ['hot', 'fallen'];
+const deck = [
+  { id: '4d9d4829-d806-4c32-9a63-f23cdc5823a8' },
+  { id: 'f97d5da2-f9c5-451d-ae3f-e23134bbbc38' },
+];
 
 async function main() {
-  // Array para armazenar cartas
-
   const cards = [];
 
   for (const category of categories) {
@@ -33,7 +34,7 @@ async function main() {
         shots: faker.number.int({ min: 1, max: 10 }),
         image: faker.image.url(),
         weight: faker.number.int({ min: 1, max: 10 }),
-        cheap: cheap[faker.number.int({ min: 0, max: 1 })],
+        deckId: deck[faker.number.int({ min: 0, max: 1 })].id,
         isFree: true,
       });
     }
