@@ -11,14 +11,14 @@ export class UserCardPrismaRepository implements IUSerCardRepository {
 
   async getInitalCards({
     userId,
-    cheap,
+    deckId,
   }: GetInitialUserCardsDTO): Promise<UserCardEntity[]> {
     const cardsToAssign = await this.prisma.$queryRaw<{ id: string }[]>(
       Prisma.sql`
       SELECT c.id
       FROM cards c
       LEFT JOIN userCards uc ON c.id = uc.cardId AND uc.userId = ${userId}
-      WHERE c.cheap = ${cheap}
+      WHERE c.deckId = ${deckId}
         AND uc.cardId IS NULL
       ORDER BY RANDOM()
       LIMIT 10;
@@ -28,6 +28,7 @@ export class UserCardPrismaRepository implements IUSerCardRepository {
     const cardsAssigned = cardsToAssign.map((card) => ({
       userId: userId,
       cardId: card.id,
+      deckId,
     }));
 
     await this.prisma.userCard.createMany({
@@ -46,9 +47,12 @@ export class UserCardPrismaRepository implements IUSerCardRepository {
     return createdCards;
   }
 
-  async getUserCardsByUserId(userId: string): Promise<UserCardEntity[]> {
+  async getUserCardsByUserIdAndDeckId(
+    userId: string,
+    deckId: string,
+  ): Promise<UserCardEntity[]> {
     const userCards = await this.prisma.userCard.findMany({
-      where: { userId },
+      where: { userId, deckId },
       include: {
         card: true,
       },

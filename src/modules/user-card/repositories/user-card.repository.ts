@@ -3,5 +3,8 @@ import { UserCardEntity } from '../entities/user-card.entity';
 
 export interface IUSerCardRepository {
   getInitalCards(data: GetInitialUserCardsDTO): Promise<UserCardEntity[]>;
-  getUserCardsByUserId(userId: string): Promise<UserCardEntity[]>;
+  getUserCardsByUserIdAndDeckId(
+    userId: string,
+    deckId: string,
+  ): Promise<UserCardEntity[]>;
 }

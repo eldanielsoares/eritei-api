@@ -1,4 +1,4 @@
 export type GetInitialUserCardsDTO = {
   userId: string;
-  cheap: string;
+  deckId: string;
 };

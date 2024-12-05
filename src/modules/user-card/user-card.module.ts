@@ -5,8 +5,7 @@ import { PrismaService } from 'src/prisma.service';
 import { GetInialCardsUseCase } from './use-cases/get-initial-cards.use-case';
 import { UserCardPrismaRepository } from './repositories/user-card-prisma-repository';
 import { IUSER_CARD_REPOSITORY } from './constants';
-import { UserModule } from '../user/user.module';
-import { GetUserCardsByUserId } from './use-cases/get-user-cards-by-user-id.use-case';
+import { GetUserCardsByUserIdAndDeckId } from './use-cases/get-user-cards-by-user-id.use-case';
 
 @Module({
   imports: [PrismaClient],
@@ -14,7 +13,7 @@ import { GetUserCardsByUserId } from './use-cases/get-user-cards-by-user-id.use-
   providers: [
     PrismaService,
     GetInialCardsUseCase,
-    GetUserCardsByUserId,
+    GetUserCardsByUserIdAndDeckId,
     UserCardPrismaRepository,
     {
       provide: IUSER_CARD_REPOSITORY,

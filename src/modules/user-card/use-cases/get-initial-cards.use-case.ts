@@ -11,9 +11,6 @@ export class GetInialCardsUseCase {
   ) {}
 
   execute(data: GetInitialUserCardsDTO) {
-    if (!CHEAP.includes(data.cheap))
-      throw new BadRequestException('cheap is invalid');
-
     return this.usercardRepository.getInitalCards(data);
   }
 }

@@ -4,13 +4,16 @@ import { IUSER_CARD_REPOSITORY } from '../constants';
 import { GetInitialUserCardsDTO } from '../dtos/get-initial-cards.dto';
 
 @Injectable()
-export class GetUserCardsByUserId {
+export class GetUserCardsByUserIdAndDeckId {
   constructor(
     @Inject(IUSER_CARD_REPOSITORY)
     private readonly usercardRepository: IUSerCardRepository,
   ) {}
 
-  execute(userId: string) {
-    return this.usercardRepository.getUserCardsByUserId(userId);
+  execute(userId: string, deckId: string) {
+    return this.usercardRepository.getUserCardsByUserIdAndDeckId(
+      userId,
+      deckId,
+    );
   }
 }
