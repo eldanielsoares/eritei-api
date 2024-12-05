@@ -127,13 +127,13 @@ Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImRhbmllbEBleGFtcGxlLmNvbSIsInN1YiI6IjhlYjVjMTgwLWQ0MzQtNDRhYS04MTlkLTU1MTdjNzg1ODFlYyIsImlhdCI6MTczMzQyNjU1OCwiZXhwIjoxNzMzNTEyOTU4fQ.NZKJ93eUkV4ImAYDaracbmGSZvb4HpWtoV9tChdKKeo
 
 
-### create pack
+### purchase pack
 POST http://localhost:3000/pack/purchase
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImRhbmllbEBleGFtcGxlLmNvbSIsInN1YiI6IjhlYjVjMTgwLWQ0MzQtNDRhYS04MTlkLTU1MTdjNzg1ODFlYyIsImlhdCI6MTczMzQyNjU1OCwiZXhwIjoxNzMzNTEyOTU4fQ.NZKJ93eUkV4ImAYDaracbmGSZvb4HpWtoV9tChdKKeo
 
 {
-  "packId": "a27e134d-8ba7-43a6-8179-bb012d59dc5a" 
+  "packId": "48219d54-a431-43d5-a5ec-99710340efac" 
 }
 
 ### create pack

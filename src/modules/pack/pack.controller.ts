@@ -58,11 +58,8 @@ export class PackController {
   @Post('/purchase')
   postPurchasePack(@Body() data: PurchasePackDto, @Req() request) {
     const userId = String(request.user.id);
-    const purchaseData = { userId, packId: data.purchaseData.packId };
-    return this.purchasePackUseCase.execute({
-      purchaseData,
-      // paymentData: data.paymentData,
-    });
+    const purchaseData = { userId, packId: data.packId };
+    return this.purchasePackUseCase.execute(purchaseData);
   }
 
   @UseGuards(JwtAuthGuard)

@@ -1,43 +1,44 @@
-import { Injectable, Logger } from '@nestjs/common';
-import { MercadoPagoConfig, Payment, Preference } from 'mercadopago';
+import { Injectable } from '@nestjs/common';
+import { MercadoPagoConfig, Payment } from 'mercadopago';
 
 @Injectable()
 export class PaymentProvider {
-  private readonly preference: Preference;
+  private readonly payment: Payment;
 
   constructor() {
     const client = new MercadoPagoConfig({
-      accessToken: process.env.MERCADO_PAGO_ACCESS_TOKEN, // Use variável de ambiente
+      accessToken: process.env.MERCADO_PAGO_ACCESS_TOKEN,
       options: {
-        timeout: 5000, // Define timeout para requisições
+        timeout: 5000,
       },
     });
 
-    const preference = new Preference(client);
+    const payment = new Payment(client);
 
-    // Inicializa o objeto Payment
-    this.preference = preference;
+    this.payment = payment;
   }
 
-  /**
-   * Processa um pagamento com os dados fornecidos
-   */
   async processPayment(): Promise<any> {
+    console.log('here');
+
     try {
-      return this.preference.create({
+      return this.payment.create({
         body: {
-          items: [
-            {
-              id: '1',
-              title: 'Meu produto',
-              quantity: 1,
-              unit_price: 25,
-            },
-          ],
+          transaction_amount: 1,
+          description: 'Compra de produto',
+          payment_method_id: 'pix',
+          payer: {
+            email: 'example@example.com',
+            // identification: {
+            //   type: 'CPF',
+            //   number: '12345678901',
+            // },
+          },
         },
+        requestOptions: { idempotencyKey: '<SOME_UNIQUE_VALUE>' },
       });
-    } catch (error) {
-      throw new Error(`Payment failed: ${error.message}`);
+    } catch {
+      console.log('error');
     }
   }
 }

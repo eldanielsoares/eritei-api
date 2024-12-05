@@ -24,7 +24,7 @@ export class PackPrismaRepository implements IPackRepository {
   }
 
   purchasePack(data: PurchasePackDto): Promise<PurchasePackEntity> {
-    return this.prisma.purchase.create({ data: data.purchaseData });
+    return this.prisma.purchase.create({ data });
   }
 
   updatePurchaseStatusPack(

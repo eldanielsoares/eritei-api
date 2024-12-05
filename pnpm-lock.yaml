@@ -5,6 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@mercadopago/sdk-js':
+    specifier: ^0.0.3
+    version: 0.0.3
   '@nestjs/common':
     specifier: ^10.0.0
     version: 10.4.13(reflect-metadata@0.2.2)(rxjs@7.8.1)
@@ -886,6 +889,10 @@ packages:
     transitivePeerDependencies:
       - encoding
       - supports-color
+    dev: false
+
+  /@mercadopago/sdk-js@0.0.3:
+    resolution: {integrity: sha512-kO48DNLHdfFAp3on12nuKdqNlEmw1x3+nM6wLd04BdWOXoFcAhkNMQV3AyUIanXdO/bB/dENakdacLT29297EQ==}
     dev: false
 
   /@nestjs/cli@10.4.8:
