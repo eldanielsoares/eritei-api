@@ -1,8 +1,8 @@
-import { Inject, Injectable } from '@nestjs/common';
+import { Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { IUSerCardRepository } from '../repositories/user-card.repository';
 import { IUSER_CARD_REPOSITORY } from '../constants';
-import { GetInitialUserCardsDTO } from '../dtos/get-initial-cards.dto';
 import { GetUserCardsByUserIdAndDeckIdDto } from '../dtos/get-user-card-by-userId-deckId.dto';
+import { UserCardEntity } from '../entities/user-card.entity';
 
 @Injectable()
 export class GetUserCardsByUserIdAndDeckId {
@@ -11,7 +11,14 @@ export class GetUserCardsByUserIdAndDeckId {
     private readonly usercardRepository: IUSerCardRepository,
   ) {}
 
-  execute(data: GetUserCardsByUserIdAndDeckIdDto) {
-    return this.usercardRepository.getUserCardsByUserIdAndDeckId(data);
+  async execute(
+    data: GetUserCardsByUserIdAndDeckIdDto,
+  ): Promise<UserCardEntity[]> {
+    const userCards =
+      await this.usercardRepository.getUserCardsByUserIdAndDeckId(data);
+
+    if (!userCards?.length) throw new NotFoundException('cards not found');
+
+    return userCards;
   }
 }
