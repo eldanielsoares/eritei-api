@@ -4,6 +4,7 @@ import { GetInitialUserCardsDTO } from '../dtos/get-initial-cards.dto';
 import { Prisma } from '@prisma/client';
 import { PrismaService } from 'src/prisma.service';
 import { UserCardEntity } from '../entities/user-card.entity';
+import { GetUserCardsByUserIdAndDeckIdDto } from '../dtos/get-user-card-by-userId-deckId.dto';
 
 @Injectable()
 export class UserCardPrismaRepository implements IUSerCardRepository {
@@ -47,10 +48,10 @@ export class UserCardPrismaRepository implements IUSerCardRepository {
     return createdCards;
   }
 
-  async getUserCardsByUserIdAndDeckId(
-    userId: string,
-    deckId: string,
-  ): Promise<UserCardEntity[]> {
+  async getUserCardsByUserIdAndDeckId({
+    userId,
+    deckId,
+  }: GetUserCardsByUserIdAndDeckIdDto): Promise<UserCardEntity[]> {
     const userCards = await this.prisma.userCard.findMany({
       where: { userId, deckId },
       include: {

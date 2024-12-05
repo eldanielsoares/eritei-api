@@ -35,6 +35,9 @@ export class UserCardController {
   getUserCardsUserId(@Request() req, @Param() param: { deckId: string }) {
     const userId = req.user.id;
 
-    return this.getUserCardsByUserIdAndDeckId.execute(userId, param.deckId);
+    return this.getUserCardsByUserIdAndDeckId.execute({
+      userId,
+      deckId: param.deckId,
+    });
   }
 }
