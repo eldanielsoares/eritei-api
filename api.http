@@ -37,11 +37,11 @@ Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImRhbmllbEBleGFtcGxlLmNvbSIsInN1YiI6IjhlYjVjMTgwLWQ0MzQtNDRhYS04MTlkLTU1MTdjNzg1ODFlYyIsImlhdCI6MTczMzM1Nzg2NywiZXhwIjoxNzMzNDQ0MjY3fQ.J6dOrqYn4y34GCuTbtUg3R7K2bl-PFJdv4UaLu-T1qg
 
 {
-  "deckId": "4d9d4829-d806-4c32-9a63-f23cdc5823a8"
+  "deckId": "f2d95b87-3320-47ea-9821-d37feaa8dfb6"
 }
 
 
 ###
-GET http://localhost:3000/user-card/4d9d4829-d806-4c32-9a63-f23cdc5823a8
+GET http://localhost:3000/user-card/f2d95b87-3320-47ea-9821-d37feaa8dfb6
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImRhbmllbEBleGFtcGxlLmNvbSIsInN1YiI6IjhlYjVjMTgwLWQ0MzQtNDRhYS04MTlkLTU1MTdjNzg1ODFlYyIsImlhdCI6MTczMzM1Nzg2NywiZXhwIjoxNzMzNDQ0MjY3fQ.J6dOrqYn4y34GCuTbtUg3R7K2bl-PFJdv4UaLu-T1qg
