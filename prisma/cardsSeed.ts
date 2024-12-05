@@ -33,6 +33,7 @@ async function main() {
         description: faker.lorem.sentence(),
         image: faker.image.url(),
         weight: faker.number.int({ min: 1, max: 10 }),
+        shots: faker.number.int({ min: 1, max: 10 }),
         deckId: deck[faker.number.int({ min: 0, max: 1 })].id,
         isFree: true,
       });
