@@ -45,3 +45,60 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImRhb
 GET http://localhost:3000/user-card/f2d95b87-3320-47ea-9821-d37feaa8dfb6
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImRhbmllbEBleGFtcGxlLmNvbSIsInN1YiI6IjhlYjVjMTgwLWQ0MzQtNDRhYS04MTlkLTU1MTdjNzg1ODFlYyIsImlhdCI6MTczMzM1Nzg2NywiZXhwIjoxNzMzNDQ0MjY3fQ.J6dOrqYn4y34GCuTbtUg3R7K2bl-PFJdv4UaLu-T1qg
+
+
+###
+POST http://localhost:3000/match
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImRhbmllbEBleGFtcGxlLmNvbSIsInN1YiI6IjhlYjVjMTgwLWQ0MzQtNDRhYS04MTlkLTU1MTdjNzg1ODFlYyIsImlhdCI6MTczMzM1Nzg2NywiZXhwIjoxNzMzNDQ0MjY3fQ.J6dOrqYn4y34GCuTbtUg3R7K2bl-PFJdv4UaLu-T1qg
+
+{
+  "deckId": "f2d95b87-3320-47ea-9821-d37feaa8dfb6"
+}
+
+### other match
+POST http://localhost:3000/match
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImRhbmllbEBleGFtcGxlLmNvbSIsInN1YiI6IjhlYjVjMTgwLWQ0MzQtNDRhYS04MTlkLTU1MTdjNzg1ODFlYyIsImlhdCI6MTczMzM1Nzg2NywiZXhwIjoxNzMzNDQ0MjY3fQ.J6dOrqYn4y34GCuTbtUg3R7K2bl-PFJdv4UaLu-T1qg
+
+{
+  "deckId": "f2d95b87-3320-47ea-9821-d37feaa8dfb6"
+}
+
+
+###
+GET  http://localhost:3000/match/1a93f90e-38bd-4601-969c-6a800f707ac2
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImRhbmllbEBleGFtcGxlLmNvbSIsInN1YiI6IjhlYjVjMTgwLWQ0MzQtNDRhYS04MTlkLTU1MTdjNzg1ODFlYyIsImlhdCI6MTczMzM1Nzg2NywiZXhwIjoxNzMzNDQ0MjY3fQ.J6dOrqYn4y34GCuTbtUg3R7K2bl-PFJdv4UaLu-T1qg
+
+
+###
+GET  http://localhost:3000/match/matches
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImRhbmllbEBleGFtcGxlLmNvbSIsInN1YiI6IjhlYjVjMTgwLWQ0MzQtNDRhYS04MTlkLTU1MTdjNzg1ODFlYyIsImlhdCI6MTczMzM1Nzg2NywiZXhwIjoxNzMzNDQ0MjY3fQ.J6dOrqYn4y34GCuTbtUg3R7K2bl-PFJdv4UaLu-T1qg
+
+###
+PUT  http://localhost:3000/match
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImRhbmllbEBleGFtcGxlLmNvbSIsInN1YiI6IjhlYjVjMTgwLWQ0MzQtNDRhYS04MTlkLTU1MTdjNzg1ODFlYyIsImlhdCI6MTczMzM1Nzg2NywiZXhwIjoxNzMzNDQ0MjY3fQ.J6dOrqYn4y34GCuTbtUg3R7K2bl-PFJdv4UaLu-T1qg
+
+{
+  "matchId": "1a93f90e-38bd-4601-969c-6a800f707ac2",
+  "cardId": "d3fdf84e-a398-4177-b416-69025e71a72f"
+}
+
+### other match
+PUT  http://localhost:3000/match
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImRhbmllbEBleGFtcGxlLmNvbSIsInN1YiI6IjhlYjVjMTgwLWQ0MzQtNDRhYS04MTlkLTU1MTdjNzg1ODFlYyIsImlhdCI6MTczMzM1Nzg2NywiZXhwIjoxNzMzNDQ0MjY3fQ.J6dOrqYn4y34GCuTbtUg3R7K2bl-PFJdv4UaLu-T1qg
+
+{
+  "matchId": "365934db-41f9-4159-8dfe-6a46cf2cc3fa",
+  "cardId": "091368ea-312d-404a-9d0a-41677b954c5c"
+}
+
+
+###
+DELETE http://localhost:3000/match/a27193a3-885d-477b-895b-bf3599870266
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImRhbmllbEBleGFtcGxlLmNvbSIsInN1YiI6IjhlYjVjMTgwLWQ0MzQtNDRhYS04MTlkLTU1MTdjNzg1ODFlYyIsImlhdCI6MTczMzM1Nzg2NywiZXhwIjoxNzMzNDQ0MjY3fQ.J6dOrqYn4y34GCuTbtUg3R7K2bl-PFJdv4UaLu-T1qg
