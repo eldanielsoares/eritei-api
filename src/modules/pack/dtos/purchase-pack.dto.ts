@@ -10,12 +10,7 @@ export type PaymentDataDto = {
   };
 };
 
-export type PurchasePack = {
+export type PurchasePackDto = {
   userId: string;
   packId: string;
-};
-
-export type PurchasePackDto = {
-  purchaseData: PurchasePack;
-  // paymentData: PaymentDataDto;
 };
