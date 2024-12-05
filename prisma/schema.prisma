@@ -22,6 +22,7 @@ model User {
   updatedAt DateTime   @updatedAt
   level     Int        @default(1)
   UserCard  UserCard[]
+  Match     Match[]
 
   @@map("users")
 }
@@ -78,4 +79,16 @@ model Deck {
   UserCard  UserCard[]
 
   @@map("decks")
+}
+
+model Match {
+  id        String   @id @default(uuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  shots     Int      @default(0)
+  cheapId   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("matches")
 }
