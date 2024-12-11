@@ -16,6 +16,8 @@ export class FindUserByIdUsecase {
 
     if (!user) throw new NotFoundException('User not found');
 
+    delete user.password;
+
     return user;
   }
 }
