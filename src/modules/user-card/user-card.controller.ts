@@ -8,14 +8,14 @@ import {
   Request,
   UseGuards,
 } from '@nestjs/common';
-import { GetInialCardsUseCase } from './use-cases/get-initial-cards.use-case';
 import { JwtAuthGuard } from '../user/jwt/jwt-guard';
 import { GetUserCardsByUserIdAndDeckId } from './use-cases/get-user-cards-by-user-id.use-case';
+import { LinkUserCardsToUserUseCase } from './use-cases/link-user-cards-to-user.use-case';
 
 @Controller('user-card')
 export class UserCardController {
-  @Inject(GetInialCardsUseCase)
-  private readonly getInitialCardsUseCase: GetInialCardsUseCase;
+  @Inject(LinkUserCardsToUserUseCase)
+  private readonly linkUserCardsToUserUseCase: LinkUserCardsToUserUseCase;
 
   @Inject(GetUserCardsByUserIdAndDeckId)
   private readonly getUserCardsByUserIdAndDeckId: GetUserCardsByUserIdAndDeckId;
@@ -24,7 +24,7 @@ export class UserCardController {
   @Post('get-initial')
   getInitialCards(@Body() data: { deckId: string }, @Request() req) {
     const userId = req.user.id;
-    return this.getInitialCardsUseCase.execute({
+    return this.linkUserCardsToUserUseCase.execute({
       deckId: data.deckId,
       userId,
     });

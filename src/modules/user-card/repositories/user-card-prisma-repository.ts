@@ -1,19 +1,20 @@
 import { Injectable } from '@nestjs/common';
 import { IUSerCardRepository } from './user-card.repository';
-import { GetInitialUserCardsDTO } from '../dtos/get-initial-cards.dto';
 import { Prisma } from '@prisma/client';
 import { PrismaService } from 'src/prisma.service';
 import { UserCardEntity } from '../entities/user-card.entity';
 import { GetUserCardsByUserIdAndDeckIdDto } from '../dtos/get-user-card-by-userId-deckId.dto';
+import { LinkUserCardsToUserDTO } from '../dtos/link-user-cards-to-user.dto';
 
 @Injectable()
 export class UserCardPrismaRepository implements IUSerCardRepository {
   constructor(private readonly prisma: PrismaService) {}
 
-  async getInitalCards({
+  async linkUserCardsToUser({
     userId,
     deckId,
-  }: GetInitialUserCardsDTO): Promise<UserCardEntity[]> {
+    quantity = 10,
+  }: LinkUserCardsToUserDTO): Promise<UserCardEntity[]> {
     const cardsToAssign = await this.prisma.$queryRaw<{ id: string }[]>(
       Prisma.sql`
       SELECT c.id
@@ -22,7 +23,7 @@ export class UserCardPrismaRepository implements IUSerCardRepository {
       WHERE c.deckId = ${deckId}
         AND uc.cardId IS NULL
       ORDER BY RANDOM()
-      LIMIT 10;
+      LIMIT ${quantity};
     `,
     );
 
