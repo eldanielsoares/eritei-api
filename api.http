@@ -1,10 +1,10 @@
 
 
-GET http://localhost:3000/user
+GET http://localhost:3001/user
 
-###
+### CRIA USER 
 # @name createUser
-POST http://localhost:3000/user
+POST http://localhost:3001/user
 Content-Type: application/json
 
 {
@@ -13,13 +13,9 @@ Content-Type: application/json
     "password": "password123"
 }
 
-###
-DELETE  http://localhost:3000/user
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImRhbmllbEBleGFtcGxlLmNvbSIsInN1YiI6IjhlYjVjMTgwLWQ0MzQtNDRhYS04MTlkLTU1MTdjNzg1ODFlYyIsImlhdCI6MTczMzQyNjU1OCwiZXhwIjoxNzMzNTEyOTU4fQ.NZKJ93eUkV4ImAYDaracbmGSZvb4HpWtoV9tChdKKeo
-
-###
+### SIGNIN
 # @name signIn
-POST http://localhost:3000/user/session
+POST http://localhost:3001/user/session
 Content-Type: application/json
 
 {
@@ -27,87 +23,79 @@ Content-Type: application/json
     "password": "password123"
 }
 
-###
-GET http://localhost:3000/user/profile
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImRhbmllbEBleGFtcGxlLmNvbSIsInN1YiI6IjhlYjVjMTgwLWQ0MzQtNDRhYS04MTlkLTU1MTdjNzg1ODFlYyIsImlhdCI6MTczMzQyNjU1OCwiZXhwIjoxNzMzNTEyOTU4fQ.NZKJ93eUkV4ImAYDaracbmGSZvb4HpWtoV9tChdKKeo
+@accessToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImRhbmllbEBleGFtcGxlLmNvbSIsInN1YiI6IjhlYjVjMTgwLWQ0MzQtNDRhYS04MTlkLTU1MTdjNzg1ODFlYyIsImlhdCI6MTczMzk0ODU4MywiZXhwIjoxNzM0MDM0OTgzfQ.p82-ctKsV85V0lLMHb4elkB85XsIJndrCJ7e7vYvEQo
 
-###
-POST http://localhost:3000/user-card/get-initial
+
+### DELETE USER
+DELETE  http://localhost:3001/user
+Authorization: Bearer {{accessToken}}
+
+
+
+### GET USER
+GET http://localhost:3001/user/profile
+Authorization: Bearer {{accessToken}}
+
+### GET INITIAL CARDS
+### USE PARA DAR AS PRIMEIRAS CARTAS GRÁTIS PARA O USUÁRIO
+### VOCE LINKA ATRAVÉS DO DECK ID
+POST http://localhost:3001/user-card/get-initial
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImRhbmllbEBleGFtcGxlLmNvbSIsInN1YiI6IjhlYjVjMTgwLWQ0MzQtNDRhYS04MTlkLTU1MTdjNzg1ODFlYyIsImlhdCI6MTczMzQyNjU1OCwiZXhwIjoxNzMzNTEyOTU4fQ.NZKJ93eUkV4ImAYDaracbmGSZvb4HpWtoV9tChdKKeo
+Authorization: Bearer {{accessToken}}
 
 {
   "deckId": "f2d95b87-3320-47ea-9821-d37feaa8dfb6"
 }
 
 
-###
-GET http://localhost:3000/user-card/f2d95b87-3320-47ea-9821-d37feaa8dfb6
+### LISTA DE TODAS AS CARTAS QUE O USER POSSUI EM UM BARALHO
+GET http://localhost:3001/user-card/f2d95b87-3320-47ea-9821-d37feaa8dfb6
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImRhbmllbEBleGFtcGxlLmNvbSIsInN1YiI6IjhlYjVjMTgwLWQ0MzQtNDRhYS04MTlkLTU1MTdjNzg1ODFlYyIsImlhdCI6MTczMzQyNjU1OCwiZXhwIjoxNzMzNTEyOTU4fQ.NZKJ93eUkV4ImAYDaracbmGSZvb4HpWtoV9tChdKKeo
+Authorization: Bearer {{accessToken}}
 
 
-###
-POST http://localhost:3000/match
+### CRIAR PARTIDA A PARTIR DE UM BARALHO
+POST http://localhost:3001/match
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImRhbmllbEBleGFtcGxlLmNvbSIsInN1YiI6IjhlYjVjMTgwLWQ0MzQtNDRhYS04MTlkLTU1MTdjNzg1ODFlYyIsImlhdCI6MTczMzQyNjU1OCwiZXhwIjoxNzMzNTEyOTU4fQ.NZKJ93eUkV4ImAYDaracbmGSZvb4HpWtoV9tChdKKeo
-
-{
-  "deckId": "f2d95b87-3320-47ea-9821-d37feaa8dfb6"
-}
-
-### other match
-POST http://localhost:3000/match
-Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImRhbmllbEBleGFtcGxlLmNvbSIsInN1YiI6IjhlYjVjMTgwLWQ0MzQtNDRhYS04MTlkLTU1MTdjNzg1ODFlYyIsImlhdCI6MTczMzQyNjU1OCwiZXhwIjoxNzMzNTEyOTU4fQ.NZKJ93eUkV4ImAYDaracbmGSZvb4HpWtoV9tChdKKeo
+Authorization: Bearer {{accessToken}}
 
 {
   "deckId": "f2d95b87-3320-47ea-9821-d37feaa8dfb6"
 }
 
 
-###
-GET  http://localhost:3000/match/1a93f90e-38bd-4601-969c-6a800f707ac2
+### VER UMA PARTIDA
+GET  http://localhost:3001/match/1a93f90e-38bd-4601-969c-6a800f707ac2
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImRhbmllbEBleGFtcGxlLmNvbSIsInN1YiI6IjhlYjVjMTgwLWQ0MzQtNDRhYS04MTlkLTU1MTdjNzg1ODFlYyIsImlhdCI6MTczMzQyNjU1OCwiZXhwIjoxNzMzNTEyOTU4fQ.NZKJ93eUkV4ImAYDaracbmGSZvb4HpWtoV9tChdKKeo
+Authorization: Bearer {{accessToken}}
 
 
-###
-GET  http://localhost:3000/match/matches
+### LISTAR HISTORICO DE PARTIDAS
+GET  http://localhost:3001/match/matches
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImRhbmllbEBleGFtcGxlLmNvbSIsInN1YiI6IjhlYjVjMTgwLWQ0MzQtNDRhYS04MTlkLTU1MTdjNzg1ODFlYyIsImlhdCI6MTczMzQyNjU1OCwiZXhwIjoxNzMzNTEyOTU4fQ.NZKJ93eUkV4ImAYDaracbmGSZvb4HpWtoV9tChdKKeo
+Authorization: Bearer {{accessToken}}
 
-###
-PUT  http://localhost:3000/match
+### ATUALIZAR SHOTS
+### EX: SE O USER BEBEU, APENAS COM O ID DA PARTIDA E DA CARTA OS SHOTS JA SAO SETADOS
+PUT  http://localhost:3001/match
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImRhbmllbEBleGFtcGxlLmNvbSIsInN1YiI6IjhlYjVjMTgwLWQ0MzQtNDRhYS04MTlkLTU1MTdjNzg1ODFlYyIsImlhdCI6MTczMzQyNjU1OCwiZXhwIjoxNzMzNTEyOTU4fQ.NZKJ93eUkV4ImAYDaracbmGSZvb4HpWtoV9tChdKKeo
+Authorization: Bearer {{accessToken}}
 
 {
   "matchId": "1a93f90e-38bd-4601-969c-6a800f707ac2",
   "cardId": "d3fdf84e-a398-4177-b416-69025e71a72f"
 }
 
-### other match
-PUT  http://localhost:3000/match
+### DELETAR PARTIDA
+DELETE http://localhost:3001/match/a27193a3-885d-477b-895b-bf3599870266
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImRhbmllbEBleGFtcGxlLmNvbSIsInN1YiI6IjhlYjVjMTgwLWQ0MzQtNDRhYS04MTlkLTU1MTdjNzg1ODFlYyIsImlhdCI6MTczMzQyNjU1OCwiZXhwIjoxNzMzNTEyOTU4fQ.NZKJ93eUkV4ImAYDaracbmGSZvb4HpWtoV9tChdKKeo
-
-{
-  "matchId": "365934db-41f9-4159-8dfe-6a46cf2cc3fa",
-  "cardId": "091368ea-312d-404a-9d0a-41677b954c5c"
-}
+Authorization: Bearer {{accessToken}}
 
 
-###
-DELETE http://localhost:3000/match/a27193a3-885d-477b-895b-bf3599870266
+### CRIAR UM PACK 
+POST http://localhost:3001/pack
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImRhbmllbEBleGFtcGxlLmNvbSIsInN1YiI6IjhlYjVjMTgwLWQ0MzQtNDRhYS04MTlkLTU1MTdjNzg1ODFlYyIsImlhdCI6MTczMzQyNjU1OCwiZXhwIjoxNzMzNTEyOTU4fQ.NZKJ93eUkV4ImAYDaracbmGSZvb4HpWtoV9tChdKKeo
-
-
-### create pack
-POST http://localhost:3000/pack
-Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImRhbmllbEBleGFtcGxlLmNvbSIsInN1YiI6IjhlYjVjMTgwLWQ0MzQtNDRhYS04MTlkLTU1MTdjNzg1ODFlYyIsImlhdCI6MTczMzQyNjU1OCwiZXhwIjoxNzMzNTEyOTU4fQ.NZKJ93eUkV4ImAYDaracbmGSZvb4HpWtoV9tChdKKeo
+Authorization: Bearer {{accessToken}}
 
 {
   "name": "Pack Ultra",
@@ -116,32 +104,33 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImRhb
 }
 
 
-###
-GET  http://localhost:3000/pack/a27e134d-8ba7-43a6-8179-bb012d59dc5a
+### BUSCAR UM PACK
+GET  http://localhost:3001/pack/a27e134d-8ba7-43a6-8179-bb012d59dc5a
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImRhbmllbEBleGFtcGxlLmNvbSIsInN1YiI6IjhlYjVjMTgwLWQ0MzQtNDRhYS04MTlkLTU1MTdjNzg1ODFlYyIsImlhdCI6MTczMzQyNjU1OCwiZXhwIjoxNzMzNTEyOTU4fQ.NZKJ93eUkV4ImAYDaracbmGSZvb4HpWtoV9tChdKKeo
+Authorization: Bearer {{accessToken}}
 
-###
-GET  http://localhost:3000/pack/all
+### BUSCAR TODOS OS PACKS
+GET  http://localhost:3001/pack/all
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImRhbmllbEBleGFtcGxlLmNvbSIsInN1YiI6IjhlYjVjMTgwLWQ0MzQtNDRhYS04MTlkLTU1MTdjNzg1ODFlYyIsImlhdCI6MTczMzQyNjU1OCwiZXhwIjoxNzMzNTEyOTU4fQ.NZKJ93eUkV4ImAYDaracbmGSZvb4HpWtoV9tChdKKeo
+Authorization: Bearer {{accessToken}}
 
 
-### purchase pack
-POST http://localhost:3000/pack/purchase
+### BUSCA A PREFERENCEID PARA GERAR O FRONT DO MP
+POST http://localhost:3001/pack/purchase/preferenceId
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImRhbmllbEBleGFtcGxlLmNvbSIsInN1YiI6IjhlYjVjMTgwLWQ0MzQtNDRhYS04MTlkLTU1MTdjNzg1ODFlYyIsImlhdCI6MTczMzQyNjU1OCwiZXhwIjoxNzMzNTEyOTU4fQ.NZKJ93eUkV4ImAYDaracbmGSZvb4HpWtoV9tChdKKeo
+Authorization: Bearer {{accessToken}}
 
 {
   "packId": "48219d54-a431-43d5-a5ec-99710340efac" 
 }
 
-### create pack
-PUT http://localhost:3000/pack/purchase/7d321eea-9faa-4e2e-8fdf-c6d2474dace1
+
+
+### COMPRAR PACK, NAO USE AINDA POIS MAIS INFORMACOES SERAO NECESSARIAS
+POST http://localhost:3001/pack/purchase
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImRhbmllbEBleGFtcGxlLmNvbSIsInN1YiI6IjhlYjVjMTgwLWQ0MzQtNDRhYS04MTlkLTU1MTdjNzg1ODFlYyIsImlhdCI6MTczMzQyNjU1OCwiZXhwIjoxNzMzNTEyOTU4fQ.NZKJ93eUkV4ImAYDaracbmGSZvb4HpWtoV9tChdKKeo
+Authorization: Bearer {{accessToken}}
 
 {
-  "userId": "8eb5c180-d434-44aa-819d-5517c78581ec",
-  "status": "APPROVED"
+  "packId": "48219d54-a431-43d5-a5ec-99710340efac" 
 }
