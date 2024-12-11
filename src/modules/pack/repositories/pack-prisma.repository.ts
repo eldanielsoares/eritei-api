@@ -6,6 +6,7 @@ import { PrismaService } from 'src/prisma.service';
 import { PurchasePackEntity } from '../entities/purchase-pack.entity';
 import { PurchasePackDto } from '../dtos/purchase-pack.dto';
 import { UpdatePurchasePackStatusDto } from '../dtos/update-purchase-pack-status.dto';
+import { PurchaseWebhookDto } from '../dtos/puchase-webhook.dto';
 
 @Injectable()
 export class PackPrismaRepository implements IPackRepository {
@@ -33,6 +34,19 @@ export class PackPrismaRepository implements IPackRepository {
     return this.prisma.purchase.update({
       where: { id: data.packId },
       data: { status: data.status },
+    });
+  }
+
+  async purchaseWebhookPack(data: PurchaseWebhookDto): Promise<void> {
+    await this.prisma.purchase.update({
+      where: { paymentId: data.paymentId },
+      data: { status: data.status },
+    });
+  }
+
+  findPurchaseById(id: string): Promise<PurchasePackEntity> {
+    return this.prisma.purchase.findUnique({
+      where: { id },
     });
   }
 }

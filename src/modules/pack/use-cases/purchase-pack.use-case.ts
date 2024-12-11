@@ -1,10 +1,11 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { IPackRepository } from '../repositories/pack.repository';
 import { IPACK_REPOSITORY } from '../constants';
-import { PurchasePackDto } from '../dtos/purchase-pack.dto';
+import { PurchasePackPaymentDto } from '../dtos/purchase-pack.dto';
 import { PurchasePackEntity } from '../entities/purchase-pack.entity';
 import { PaymentProvider } from '../providers/payment.provider';
 
+//no webhook checar se status é approved
 @Injectable()
 export class PurchasePackUseCase {
   constructor(
@@ -12,8 +13,17 @@ export class PurchasePackUseCase {
     private readonly paymentProvider: PaymentProvider,
   ) {}
 
-  async execute(data: PurchasePackDto): Promise<PurchasePackEntity> {
-    const purchase = await this.packRepository.purchasePack(data);
+  async execute(data: PurchasePackPaymentDto): Promise<PurchasePackEntity> {
+    const { userId, packId, deckId, ...paymentData } = data;
+
+    const payment = await this.paymentProvider.processPayment(paymentData);
+
+    const purchase = await this.packRepository.purchasePack({
+      userId,
+      packId,
+      paymentId: String(payment.id),
+      deckId,
+    });
 
     return purchase;
   }

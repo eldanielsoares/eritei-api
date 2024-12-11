@@ -10,6 +10,10 @@ import { FindAllPacksUseCase } from './use-cases/find-all-packs.use-case';
 import { PurchasePackUseCase } from './use-cases/purchase-pack.use-case';
 import { UpdatePurchaseStatusPackUseCase } from './use-cases/update-purchase-status-pack.use-case';
 import { PaymentProvider } from './providers/payment.provider';
+import { GeneratePackPreferenceIdUseCase } from './use-cases/generate-pack-preferenceId.use-case';
+import { UserCardPrismaRepository } from '../user-card/repositories/user-card-prisma-repository';
+import { IUSER_CARD_REPOSITORY } from '../user-card/constants';
+import { PurchaseWebhookPackUseCase } from './use-cases/purchase-webhook.use-case';
 
 @Module({
   imports: [PrismaClient],
@@ -22,8 +26,15 @@ import { PaymentProvider } from './providers/payment.provider';
     FindAllPacksUseCase,
     PurchasePackUseCase,
     UpdatePurchaseStatusPackUseCase,
+    GeneratePackPreferenceIdUseCase,
+    PurchaseWebhookPackUseCase,
     PackPrismaRepository,
     { provide: IPACK_REPOSITORY, useExisting: PackPrismaRepository },
+    UserCardPrismaRepository,
+    {
+      provide: IUSER_CARD_REPOSITORY,
+      useExisting: UserCardPrismaRepository,
+    },
   ],
 })
 export class PackModule {}
