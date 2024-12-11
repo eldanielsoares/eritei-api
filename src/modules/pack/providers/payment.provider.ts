@@ -1,9 +1,14 @@
 import { Injectable } from '@nestjs/common';
-import { MercadoPagoConfig, Payment } from 'mercadopago';
+import { MercadoPagoConfig, Payment, Preference } from 'mercadopago';
+import { PreferenceResponse } from 'mercadopago/dist/clients/preference/commonTypes';
+import { PreferenceDto } from '../dtos/preference.dto';
+
+import { v4 } from 'uuid';
 
 @Injectable()
 export class PaymentProvider {
   private readonly payment: Payment;
+  private readonly preference: Preference;
 
   constructor() {
     const client = new MercadoPagoConfig({
@@ -14,29 +19,48 @@ export class PaymentProvider {
     });
 
     const payment = new Payment(client);
+    const preference = new Preference(client);
 
     this.payment = payment;
+    this.preference = preference;
   }
 
-  async processPayment(): Promise<any> {
-    console.log('here');
-
-    try {
-      return this.payment.create({
-        body: {
-          transaction_amount: 1,
-          description: 'Compra de produto',
-          payment_method_id: 'pix',
-          payer: {
-            email: 'example@example.com',
-            // identification: {
-            //   type: 'CPF',
-            //   number: '12345678901',
-            // },
+  async createPreference(data: PreferenceDto): Promise<PreferenceResponse> {
+    const { id, description, title, unit_price } = data;
+    const preferenceResponse = await this.preference.create({
+      body: {
+        items: [
+          {
+            id,
+            description,
+            quantity: 1,
+            title,
+            currency_id: 'BRL',
+            unit_price,
           },
+        ],
+      },
+    });
+
+    return preferenceResponse;
+  }
+
+  async processPayment(data: any) {
+    try {
+      const payment = await this.payment.create({
+        body: {
+          transaction_amount: data.transaction_amount,
+          description: data.description,
+          payment_method_id: data.payment_method_id,
+          payer: data.payer,
+          installments: data.installments,
+          token: data.token,
+          issuer_id: data.issuer_id,
         },
-        requestOptions: { idempotencyKey: '<SOME_UNIQUE_VALUE>' },
+        requestOptions: { idempotencyKey: v4() },
       });
+
+      return payment;
     } catch {
       console.log('error');
     }
