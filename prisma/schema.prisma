@@ -81,6 +81,7 @@ model Deck {
   updatedAt DateTime   @updatedAt
   Card      Card[]
   UserCard  UserCard[]
+  Purchase  Purchase[]
 
   @@map("decks")
 }
@@ -114,11 +115,14 @@ model Purchase {
   id        String   @id @default(uuid())
   userId    String
   packId    String
+  deckId    String
   status    String   @default("PENDING")
+  paymentId String   @unique
   createdAt DateTime @default(now())
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
   pack Pack @relation(fields: [packId], references: [id], onDelete: Cascade)
+  deck Deck @relation(fields: [deckId], references: [id])
 
   @@map("purchases")
 }
